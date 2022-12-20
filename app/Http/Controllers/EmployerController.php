@@ -7,7 +7,5 @@ use App\Models\User;
 
 class EmployerController extends Controller
 {
-    function index(){
-        return User::find(1);
-    }
+    
 }

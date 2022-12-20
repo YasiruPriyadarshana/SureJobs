@@ -11,6 +11,7 @@ class Jobs extends Model
 
     protected $fillable=[
         'title',
+        'type',
         'position',
         'description',
         'salary range'

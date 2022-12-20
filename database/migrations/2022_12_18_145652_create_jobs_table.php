@@ -17,6 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->integer('employer_id')->unsigned();
             $table->string("title");
+            $table->string("type");
             $table->string("position");
             $table->text("description");
             $table->string("salary range");
