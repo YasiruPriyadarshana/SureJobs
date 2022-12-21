@@ -60,17 +60,77 @@
 
 <!--section -->
 
-<section class="popular-deals section bg-gray">
+<section class="popular-deals section bg-white">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-12">
-				<div class="section-title">
-					<h2>Top Jobs</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas, magnam.</p>
-				</div>
+			<div class="col">
+			<!-- list  -->
+			@foreach($alljobs as $job)
+
+			<div class="ad-listing-list">
+					<div class="row p-lg-3 p-sm-5 p-4">
+						<div class="col-lg-4 align-self-center">
+							<a href="">
+								<img src="{{$job->image}}" class="img-fluid" alt="">
+							</a>
+						</div>
+						<div class="col-lg-8">
+							<div class="row">
+								<div class="col-lg-8 col-md-10">
+									<div class="ad-listing-content">
+										<div>
+											<a href="single.html" class="font-weight-bold">{{$job->title}}</a>
+										</div>
+										<ul class="list-inline mt-2 mb-3">
+											<li class="list-inline-item"><a href="category.html"> <i class="fa fa-folder-open-o"></i>{{$job->position}}</a></li>
+											<li class="list-inline-item"><a href="category.htm"><i class="fa fa-calendar"></i>{{$job->type}}</a></li>
+										</ul>
+										<p class="pr-5">{{$job->salary_range}}</p>
+										<p class="pr-5">{{$job->description}}</p>
+									</div>
+								</div>
+								<div class="col-sm-3 align-self-center">
+										<button type="submit" class="btn btn-primary active w-100">Apply</button>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				
 			</div>
+			@endforeach
+			<!-- list  -->
+			
+			<!-- pagination -->
+			<div class="pagination justify-content-center pt-4">
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
+						<li class="page-item">
+							<a class="page-link" href="ad-list-view.html" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+								<span class="sr-only">Previous</span>
+							</a>
+						</li>
+						<li class="page-item active"><a class="page-link" href="ad-list-view.html">1</a></li>
+						<li class="page-item"><a class="page-link" href="ad-list-view.html">2</a></li>
+						<li class="page-item"><a class="page-link" href="ad-list-view.html">3</a></li>
+						<li class="page-item">
+							<a class="page-link" href="ad-list-view.html" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+								<span class="sr-only">Next</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<!-- pagination -->
+			</div>
+			
+				
 		</div>
 	</div>
 </section>
+
+
 
 @endsection

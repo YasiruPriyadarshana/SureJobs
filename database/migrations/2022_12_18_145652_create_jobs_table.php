@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string("type");
             $table->string("position");
             $table->text("description");
-            $table->string("salary range");
+            $table->string("salary_range");
             $table->timestamps();
             $table->foreign('employer_id')
               ->references('id')->on('employers')->onDelete('cascade');

@@ -1,6 +1,23 @@
 @extends("layout")
 @section("content")
 
+@push('scripts')
+<!-- Scripts -->
+<script language="JavaScript" type="text/javascript">
+  function HandleBrowseClick()
+  {
+      var fileinput = document.getElementById("file-upload");
+      var textinput = document.getElementById("filename");
+
+      newStr = fileinput.value.replace('fakepath','...')
+      textinput.innerHTML = newStr;
+  }
+</script>
+
+@endpush
+
+
+
 <section class="login py-5 border-top-1">
   <div class="container">
     <div class="row justify-content-center">
@@ -12,7 +29,7 @@
           <h3 class="bg-gray p-4">Register Your Company</h3>
           @endif
 
-          <form action="{{url('user/'.$id)}}" method="post">
+          <form action="{{url('user/'.$id)}}" method="post" enctype="multipart/form-data">
             @csrf
             <fieldset class="p-4">
                 {{-- <h6 class="font-weight-bold pt-4 pb-1">Full Name:</h6> --}}
@@ -36,30 +53,27 @@
                     <span class="d-block">or</span>
                     <span class="d-block btn bg-primary text-white my-3 select-files">Upload CV</span>
                     <span class="d-block">Maximum upload file size: 10 MB</span>
-                    <input type="file" class="form-control-file d-none" id="file-upload" name="file">
+                    <label id="filename"></label>
+                    <input type="file" class="form-control-file d-none" id="file-upload" name="file" onchange="HandleBrowseClick();">
                   </label>
                 </div>
               @else {{-- company --}}
                 <input class="form-control mb-3" name="location" type="text" placeholder="Location" required>
-                {{-- <label class="font-weight-bold text-dark pt-4 pl-2">Type:</label>
-                <div class="row px-3">
-                  <div class="col rounded bg-white">
-                    <input type="radio" name="fulltime" value="fulltime" id="fulltime" required>
-                    <label for="fulltime" class="py-2">Full-time</label>
-                  </div>
-                  <div class="col rounded bg-white ">
-                    <input type="radio" name="parttime" value="psrc="arttime" id="parttime" required>
-                    <label for="parttime" class="py-2">Part-time</label>
-                  </div>
-                  <div class="col rounded bg-white ">
-                    <input type="radio" name="internship" value="internship" id="internship" required>
-                    <label for="internship" class="py-2">Internship</label>
-                  </div>
-                </div> --}}
+                
                 
                 <label class="font-weight-bold text-dark pt-4 pl-2">Description:</label>
                 <textarea name="description" id="description" class="form-control bg-white" rows="7"
                   placeholder="Write details about your company" required></textarea>
+                  <label class="font-weight-bold text-dark pt-4 pl-2">Company Photo:</label>
+                <div class="choose-file text-center my-4 py-3 rounded bg-light">
+                  <label for="file-upload">
+                    <span class="d-block font-weight-bold text-dark">Drop file anywhere to upload</span>
+                    <span class="d-block">or</span>
+                    <span class="d-block btn bg-primary text-white my-3 select-files">Upload</span>
+                    <label id="filename"></label>
+                    <input type="file" class="form-control-file d-none" id="file-upload" name="file" onchange="HandleBrowseClick();">
+                  </label>
+                </div>
               @endif
               
               <div>

@@ -50,33 +50,41 @@
 							<li class="nav-item @@home">
 								<a class="nav-link" href="/">Home</a>
 							</li>
-							<li class="nav-item dropdown dropdown-slide @@dashboard">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#!">Dashboard<span><i class="fa fa-angle-down"></i></span>
+              @isset($auth)
+              @if ($auth == "employee")
+              <li class="nav-item dropdown dropdown-slide @@dashboard">
+								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#!">Jobs
 								</a>
+							</li>
+              @endif
 
+              @if ($auth == "company")
+              <li class="nav-item dropdown dropdown-slide @@dashboard">
+								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#!">Company<span><i class="fa fa-angle-down"></i></span>
+								</a>
 								<!-- Dropdown list -->
 								<ul class="dropdown-menu">
-									<li><a class="dropdown-item @@dashboardPage" href="dashboard.html">Dashboard</a></li>
-									<li><a class="dropdown-item @@dashboardMyAds" href="dashboard-my-ads.html">Dashboard My Ads</a></li>
-									<li><a class="dropdown-item @@dashboardFavouriteAds" href="dashboard-favourite-ads.html">Dashboard Favourite Ads</a></li>
-									<li><a class="dropdown-item @@dashboardArchivedAds" href="dashboard-archived-ads.html">Dashboard Archived Ads</a></li>
-									<li><a class="dropdown-item @@dashboardPendingAds" href="dashboard-pending-ads.html">Dashboard Pending Ads</a></li>
-									
-									<li class="dropdown dropdown-submenu dropright">
-										<a class="dropdown-item dropdown-toggle" href="#!" id="dropdown0501" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sub Menu</a>
-					
-										<ul class="dropdown-menu" aria-labelledby="dropdown0501">
-											<li><a class="dropdown-item" href="index.html">Submenu 01</a></li>
-											<li><a class="dropdown-item" href="index.html">Submenu 02</a></li>
-										</ul>
-									</li>
+									<li><a class="dropdown-item @@dashboardPage" href="">Company</a></li>
+									<li><a class="dropdown-item @@dashboardMyAds" href="/addjobs">Add Job vacancies</a></li>
+									<li><a class="dropdown-item @@dashboardFavouriteAds" href="">Company Profile</a></li>
 								</ul>
 							</li>
+              @endif
+              @endisset
 						</ul>
 						<ul class="navbar-nav ml-auto mt-10">
+              @isset($auth)
+              @if ($auth == "employee" || $auth == "company")
 							<li class="nav-item">
+								<a class="nav-link login-button" href="/login">Logout</a>
+							</li>
+              @else
+              <li class="nav-item">
 								<a class="nav-link login-button" href="/login">Login</a>
 							</li>
+              @endif
+              @endisset
+              
 							<li class="nav-item">
 								<a class="nav-link text-white add-button" href="/registration/user"><i class="fa fa-sign-in"></i> Register</a>
 							</li>
@@ -112,11 +120,11 @@
         <div class="block">
           <h4>Employee</h4>
           <ul>
-            <li><a href="Post Your Vacancy.html">Post Your Vacancy</a></li>
-            <li><a href="Top Employers.html">Top Employers</a></li>
-            <li><a href="Top jobs.html">Top jobs</a></li>
-            <li><a href="New to you.html">New to you</a></li>
-            <li><a href="terms-condition.html">Terms & Conditions</a></li>
+            <li><a href="Post Your Vacancy">Post Your Vacancy</a></li>
+            <li><a href="Top Employers">Top Employers</a></li>
+            <li><a href="Top jobs">Top jobs</a></li>
+            <li><a href="New to you">New to you</a></li>
+            <li><a href="terms-condition">Terms & Conditions</a></li>
           </ul>
         </div>
       </div>
@@ -125,32 +133,31 @@
         <div class="block">
           <h4>Company</h4>
           <ul>
-            <li><a href="registration/company">Start recruiting</a></li>
-            <li><a href="candidates.html">Top candidates</a></li>
-            <li><a href="jobs.html">Add new jobs</a></li>
-            <li><a href="Profile.html">Profile</a>
+            <li><a href="registration/company">Create company Profile</a></li>
+            <li><a href="candidates">Top candidates</a></li>
+            <li><a href="jobs">Add new jobs</a></li>
+            <li><a href="Profile">Profile</a>
             </li>
-            <li><a href="blog.html">Blog</a></li>
+            <li><a href="blog">Blog</a></li>
 
 
 
           </ul>
         </div>
       </div>
-      <!-- Promotion -->
+      <!-- Mobile app link-->
       <div class="col-lg-4 col-md-7">
-        <!-- App promotion -->
         <div class="block-2 app-promotion">
           <div class="mobile d-flex  align-items-center">
-            <a href="index.html">
+            <a href="index">
               <!-- Icon -->
               <img src="{{ asset('images/footer/phone-icon.png') }}" alt="mobile-icon">
             </a>
             <p class="mb-0">Get the SureJobs Mobile App and more</p>
           </div>
           <div class="download-btn d-flex my-3">
-            <a href="index.html"><img src="{{ asset('images/apps/google-play-store.png') }}" class="img-fluid" alt=""></a>
-            <a href="index.html" class=" ml-3"><img src="{{ asset('images/apps/apple-app-store.png') }}" class="img-fluid" alt=""></a>
+            <a href="index"><img src="{{ asset('images/apps/google-play-store.png') }}" class="img-fluid" alt=""></a>
+            <a href="index" class=" ml-3"><img src="{{ asset('images/apps/apple-app-store.png') }}" class="img-fluid" alt=""></a>
           </div>
         </div>
       </div>
@@ -190,7 +197,7 @@
     <i class="fa fa-angle-up"></i>
   </div>
 </footer>
-
+@stack('scripts')
 <!-- 
 Essential Scripts
 =====================================-->
