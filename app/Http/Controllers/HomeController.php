@@ -6,15 +6,24 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
 use App\Models\Employer;
+use App\Models\Employee;
 
 class HomeController extends Controller
 {
-    function index($auth){   
-        return view('home', ['auth'=>$auth]);
+    function index($auth){  
+        $alljobs = $this->getAllJobs(); 
+        
+        return view('home', ['auth'=>$auth,'alljobs'=>$alljobs]);
     }
 
     //for unauthorized users
     function unauth(){ 
+        $alljobs = $this->getAllJobs();
+
+        return view('home', ['auth'=>1,'alljobs'=>$alljobs]);
+    }
+
+    function getAllJobs(){
         $alljobs = new Collection();
         $employers = Employer::all();
 
@@ -30,6 +39,15 @@ class HomeController extends Controller
             $alljobs = $alljobs->merge($jobs);
         }
 
-        return view('home', ['auth'=>1,'alljobs'=>$alljobs]);
+        return $alljobs;
+    }
+
+    function applyForJob(){
+        $jobId = 1;	
+        $employee = Employee::find(1);	
+       
+
+        $employee->jobs()->attach($jobId);
+
     }
 }

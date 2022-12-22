@@ -30,6 +30,14 @@ Route::get('/addjobs', function () {
     return view('addjobs');
 });
 
+Route::get('/mangejobs', function () {
+    return view('mangejobs');
+});
+
+Route::get('/appliedjobs', function () {
+    return view('appliedjobs');
+});
+
 Route::get('/home/{auth}',[HomeController::class, 'index']);
 Route::get('/registration/{isEmployer}',[UsersController::class, 'index']);
 
@@ -41,7 +49,10 @@ Route::controller(UsersController::class)->group(function(){
     Route::post('login', 'validate_login')->name('auth.validate_login');
 });
 
-
 Route::controller(EmployerController::class)->group(function(){
     Route::post('', 'create_job')->name('company.create_job');
+});
+
+Route::controller(HomeController::class)->group(function(){
+    Route::get('aa', 'applyForJob')->name('user.applyForJob');
 });
