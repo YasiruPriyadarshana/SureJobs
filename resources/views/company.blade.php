@@ -22,10 +22,9 @@
             <!-- Dashboard Links -->
             <div class="widget user-dashboard-menu">
               <ul>
-                <li><a href=""><i class="fa fa-user"></i>Jobs</a></li>
-                <li><a href=""><i class="fa fa-bookmark-o"></i>Applied Candidates
-                    {{-- <span>5</span></a></li> --}}
-                
+                <li><a href=""><i class="fa fa-briefcase "></i>Jobs</a></li>
+                <li><a href="{{ url('/registration/user') }}"><i class="fa fa-plus-circle "></i>Add Job Vacancies</a></li>
+                <li><a href=""><i class="fa fa-users"></i>Applied Candidates</a></li>
                 <li><a href=""><i class="fa fa-cog"></i> Logout</a></li>
                 <li><a href="" data-toggle="modal" data-target="#deleteaccount"><i class="fa fa-power-off"></i>Delete Account</a></li>
               </ul>

@@ -70,7 +70,7 @@
 			<div class="ad-listing-list">
 					<div class="row p-lg-3 p-sm-5 p-4">
 						<div class="col-lg-4 align-self-center">
-							<a href="">
+							<a href="/detail/{{$job->id}}">
 								<img src="{{$job->image}}" class="img-fluid" alt="">
 							</a>
 						</div>
@@ -79,7 +79,7 @@
 								<div class="col-lg-8 col-md-10">
 									<div class="ad-listing-content">
 										<div>
-											<a href="" class="font-weight-bold">{{$job->title}}</a>
+											<a href="/detail/{{$job->id}}" class="font-weight-bold">{{$job->title}}</a>
 										</div>
 										<ul class="list-inline mt-2 mb-3">
 											<li class="list-inline-item">{{$job->position}}</li>
@@ -90,7 +90,12 @@
 									</div>
 								</div>
 								<div class="col-sm-3 align-self-center">
-									<a href="{{ route('user.applyForJob') }}" class="font-weight-bold">Apply</a>
+									<a href="{{ route('user.applyForJob') }}" class="font-weight-bold">
+										<button type="submit" class="btn btn-primary active w-100 mb-4">Apply</button>
+									</a>
+									<a class="p-4 mt-4 ml-2" href="/detail/{{$job->id}}">
+										Read More 
+									</a>
 								</div>
 							</div>
 						</div>

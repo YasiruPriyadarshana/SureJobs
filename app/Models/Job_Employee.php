@@ -11,6 +11,6 @@ class Job_Employee extends Model
 
     protected $fillable=[
         'employee_id',
-        'job_id'
+        'jobs_id'
     ];
 }

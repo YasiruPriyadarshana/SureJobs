@@ -8,38 +8,49 @@
         <thead>
           <tr>
             <th style="width: 300px;">Employee</th>
-            <th style="width: 500px;">Description</th>
+            <th style="width: 500px;">Job</th>
             <th class="text-center">CV</th>
           </tr>
         </thead>
         <tbody>
-         
-          <tr>
-            <td>
-                <span class="categories">Employee</span>
-            </td>
-            <td>
-                    <div class="d-flex flex-column">
-                        <div class="p-2"><span ><strong>Job Position:</strong> SE</span></div>
-                        <div class="p-2"><span><strong>Type: </strong><time>Full time</time> </span></div>
-                        <div class="p-2"><span class="status active"><strong>Salary</strong>$100000</span></div>
-                        <div class="p-2"><span><strong>Description</strong>desc</span></div>
-                    </div> 
-                             
-            </td>
-           
-            <td class="action" data-title="Action">
-              <div class="">
-                <ul class="list-inline justify-content-center">
-                  <li class="list-inline-item">
-                    <a class="view" data-toggle="tooltip" data-placement="top" title="Edit" href="">
-                      <i class="fa fa-download"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </td>
-          </tr>
+          
+          @foreach($employees as $employee)
+            <tr>
+              <td>
+                <div class="d-flex flex-column">
+                  
+                  
+                </div>  
+                <div class="d-flex flex-column">
+                  <div class="p-2"><span class="categories">{{$employee->name}}</span></div>
+                  <div class="p-2"><span class="categories">{{$employee->mobile}}</span></div>
+                  <div class="p-2"><span class="categories">{{$employee->address}}</span></div>
+                  <div class="p-3"></div>
+                </div>  
+              </td>
+              <td>
+                <div class="d-flex flex-column">
+                    <div class="p-2"><span ><strong>Job Position:</strong> SE</span></div>
+                    <div class="p-2"><span><strong>Type: </strong><time>Full time</time> </span></div>
+                    <div class="p-2"><span class="status active"><strong>Salary</strong>$100000</span></div>
+                    <div class="p-2"><span><strong>Description</strong>desc</span></div>
+                </div>      
+              </td>
+            
+              <td class="action" data-title="Action">
+                <div class="">
+                  <ul class="list-inline justify-content-center">
+                    <li class="list-inline-item">
+                      <a class="view" href="{{ route('company.downloadCV', $employee->cv) }}" data-toggle="tooltip" data-placement="top" title="Edit">
+                        <i class="fa fa-download"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+            
+          @endforeach
           
         </tbody>
       </table>

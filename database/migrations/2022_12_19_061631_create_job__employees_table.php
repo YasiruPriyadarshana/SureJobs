@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('job_employees', function (Blueprint $table) {
-            $table->integer('job_id')->unsigned();
+        Schema::create('job__employees', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('jobs_id')->unsigned();
             $table->integer('employee_id')->unsigned();
 
             $table->foreign('job_id')->references('id')->on('jobs')->onDelete('cascade');
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('job_employees');
+        Schema::dropIfExists('job__employees');
     }
 };

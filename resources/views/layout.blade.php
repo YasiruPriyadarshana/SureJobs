@@ -86,7 +86,7 @@
               @endisset
               
 							<li class="nav-item">
-								<a class="nav-link text-white add-button" href="/registration/user"><i class="fa fa-sign-in"></i> Register</a>
+								<a class="nav-link text-white add-button" href="{{ url('/registration/user') }}" ><i class="fa fa-sign-in"></i> Register</a>
 							</li>
 						</ul>
 					</div>

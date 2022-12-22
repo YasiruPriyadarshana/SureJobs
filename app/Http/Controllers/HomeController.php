@@ -7,9 +7,15 @@ use Illuminate\Support\Collection;
 
 use App\Models\Employer;
 use App\Models\Employee;
+use App\Models\Jobs;
 
 class HomeController extends Controller
 {
+    public function detailjob(Jobs $job){
+        //route model binding
+        return view('detail', ['job'=>$job]);
+    }
+
     function index($auth){  
         $alljobs = $this->getAllJobs(); 
         
@@ -28,12 +34,12 @@ class HomeController extends Controller
         $employers = Employer::all();
 
         foreach ($employers as $employer) {
-            $filterd = $employer->only('image');
+            $parentclass = $employer->only('image');
             
             $jobs = $employer->jobs;
-            // add attribute from parent class;
+            // add attribute from parent class/employee;
             for ($i = 0; $i < count($jobs); $i++) {
-                $jobs[$i]['image'] = 'storage/'.$filterd['image'] ;
+                $jobs[$i]['image'] = 'storage/'.$parentclass['image'] ;
             }
 
             $alljobs = $alljobs->merge($jobs);
@@ -48,6 +54,16 @@ class HomeController extends Controller
        
 
         $employee->jobs()->attach($jobId);
+        return view('home');
+    }
 
+
+    function searchJobs(){
+        $alljobs = new Collection();
+        $employers = Employer::all();
+
+        $filteredCollection = $alljobs->where('location', '=', 'Colombo');
+
+        return view('home', ['auth'=>$auth,'alljobs'=>$filteredCollection]);
     }
 }
