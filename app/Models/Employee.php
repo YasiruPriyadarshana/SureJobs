@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Jobs;
+use App\Models\User;
+
 class Employee extends Model
 {
     use HasFactory;
@@ -16,4 +19,14 @@ class Employee extends Model
         'nic',
         'cv'
     ];
+
+    //Get all jobs that employee applied.
+    public function jobs()
+    {
+        return $this->belongsToMany(Jobs::class, 'job__employees');
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

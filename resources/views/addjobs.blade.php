@@ -19,17 +19,17 @@
               <h6 class="font-weight-bold pt-4 pb-1">Salary Range:</h6>
               <input type="text" class="form-control bg-white" name="salary_range"  required>
               <h6 class="font-weight-bold pt-4 pb-1">Type:</h6>
-              <div class="row mx-1 bg-white">
+              <div class="row mx-1 bg-white" role="group" >
                 <div class="col mr-lg-4 my-2 pt-2 pb-1 rounded">
-                  <input type="radio" name="itemName" value="fultime" id="fultime" required>
+                  <input type="radio" name="type" value="Full-time" id="fulltime" required>
                   <label for="personal" class="py-2">Full-time</label>
                 </div>
                 <div class="col mr-lg-4 my-2 pt-2 pb-1 rounded">
-                  <input type="radio" name="itemName" value="parttime" id="parttime" required>
+                  <input type="radio" name="type" value="Part-time" id="parttime" required>
                   <label for="business" class="py-2">Part-time</label>
                 </div>
                 <div class="col mr-lg-4 my-2 pt-2 pb-1 rounded">
-                  <input type="radio" name="itemName" value="internship" id="internship" required>
+                  <input type="radio" name="type" value="Internship" id="internship" required>
                   <label for="business" class="py-2">Internship</label>
                 </div>
               </div>

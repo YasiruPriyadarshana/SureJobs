@@ -70,7 +70,7 @@
 			<div class="ad-listing-list">
 					<div class="row p-lg-3 p-sm-5 p-4">
 						<div class="col-lg-4 align-self-center">
-							<a href="">
+							<a href="/detail/{{$job->id}}">
 								<img src="{{$job->image}}" class="img-fluid" alt="">
 							</a>
 						</div>
@@ -79,19 +79,23 @@
 								<div class="col-lg-8 col-md-10">
 									<div class="ad-listing-content">
 										<div>
-											<a href="single.html" class="font-weight-bold">{{$job->title}}</a>
+											<a href="/detail/{{$job->id}}" class="font-weight-bold">{{$job->title}}</a>
 										</div>
 										<ul class="list-inline mt-2 mb-3">
-											<li class="list-inline-item"><a href="category.html"> <i class="fa fa-folder-open-o"></i>{{$job->position}}</a></li>
-											<li class="list-inline-item"><a href="category.htm"><i class="fa fa-calendar"></i>{{$job->type}}</a></li>
+											<li class="list-inline-item">{{$job->position}}</li>
+											<li class="list-inline-item"><i class="pl-4 pr-2 fa fa-briefcase"></i>{{$job->type}}</li>
 										</ul>
-										<p class="pr-5">{{$job->salary_range}}</p>
+										<div class="row"><i class="pl-3 fa fa-money"></i><p class="pl-2">{{$job->salary_range}}</p></div>
 										<p class="pr-5">{{$job->description}}</p>
 									</div>
 								</div>
 								<div class="col-sm-3 align-self-center">
-										<button type="submit" class="btn btn-primary active w-100">Apply</button>
-									
+									<a href="{{ route('user.applyForJob') }}" class="font-weight-bold">
+										<button type="submit" class="btn btn-primary active w-100 mb-4">Apply</button>
+									</a>
+									<a class="p-4 mt-4 ml-2" href="/detail/{{$job->id}}">
+										Read More 
+									</a>
 								</div>
 							</div>
 						</div>
@@ -106,16 +110,16 @@
 				<nav aria-label="Page navigation example">
 					<ul class="pagination">
 						<li class="page-item">
-							<a class="page-link" href="ad-list-view.html" aria-label="Previous">
+							<a class="page-link" href="" aria-label="Previous">
 								<span aria-hidden="true">&laquo;</span>
 								<span class="sr-only">Previous</span>
 							</a>
 						</li>
-						<li class="page-item active"><a class="page-link" href="ad-list-view.html">1</a></li>
-						<li class="page-item"><a class="page-link" href="ad-list-view.html">2</a></li>
-						<li class="page-item"><a class="page-link" href="ad-list-view.html">3</a></li>
+						<li class="page-item active"><a class="page-link" href="">1</a></li>
+						<li class="page-item"><a class="page-link" href="">2</a></li>
+						<li class="page-item"><a class="page-link" href="">3</a></li>
 						<li class="page-item">
-							<a class="page-link" href="ad-list-view.html" aria-label="Next">
+							<a class="page-link" href="" aria-label="Next">
 								<span aria-hidden="true">&raquo;</span>
 								<span class="sr-only">Next</span>
 							</a>
