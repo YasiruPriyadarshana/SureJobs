@@ -22,9 +22,6 @@
   <link href="{{ asset('plugins/bootstrap/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('plugins/bootstrap/bootstrap-slider.css') }}" rel="stylesheet">
   <link href="{{ asset('plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('plugins/slick/slick.css" rel="stylesheet') }}">
-  <link href="{{ asset('plugins/slick/slick-theme.css" rel="stylesheet') }}">
-  <link href="{{ asset('plugins/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
   
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
@@ -64,9 +61,9 @@
                     </a>
                     <!-- Dropdown list -->
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item @@dashboardMyAds" href="{{ url('addjobs',$userid) }}">Add Job vacancies</a></li>
-                      <li><a class="dropdown-item @@dashboardMyAds" href="{{ url('appliedjobs',$userid) }}">Applied Candidates</a></li>
-                      <li><a class="dropdown-item @@dashboardFavouriteAds" href="">Company Profile</a></li>
+                      <li><a class="dropdown-item" href="{{ url('addjobs',$userid) }}">Add Job vacancies</a></li>
+                      <li><a class="dropdown-item" href="{{ url('appliedjobs',$userid) }}">Applied Candidates</a></li>
+                      <li><a class="dropdown-item" href="{{ url('mangejobs',$userid) }}">Company Profile</a></li>
                     </ul>
                   </li>
                 @endif
@@ -117,7 +114,7 @@
         </div>
       </div>
       <!-- Link list -->
-      <div class="col-lg-2 offset-lg-1 col-md-3 col-6 mb-4 mb-lg-0">
+      <div class="col-lg-2 mt-5 offset-lg-1 col-md-3 col-6 mb-4 mb-lg-0">
         <div class="block">
           <h4>Employee</h4>
           <ul>
@@ -130,7 +127,7 @@
         </div>
       </div>
       <!-- Link list -->
-      <div class="col-lg-2 col-md-3 offset-md-1 offset-lg-0 col-6 mb-4 mb-md-0">
+      <div class="col-lg-2 mt-5 col-md-3 offset-md-1 offset-lg-0 col-6 mb-4 mb-md-0">
         <div class="block">
           <h4>Company</h4>
           <ul>
@@ -147,7 +144,7 @@
         </div>
       </div>
       <!-- Mobile app link-->
-      <div class="col-lg-4 col-md-7">
+      <div class="col-lg-4 mt-5 col-md-7">
         <div class="block-2 app-promotion">
           <div class="mobile d-flex  align-items-center">
             <a href="index">
@@ -203,16 +200,7 @@
 Essential Scripts
 =====================================-->
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
-<script src="{{ asset('plugins/bootstrap/popper.min.js') }}"></script>
 <script src="{{ asset('plugins/bootstrap/bootstrap.min.js') }}"></script>
-<script src="{{ asset('plugins/bootstrap/bootstrap-slider.js') }}"></script>
-<script src="{{ asset('plugins/tether/js/tether.min.js') }}"></script>
-<script src="{{ asset('plugins/raty/jquery.raty-fa.js') }}"></script>
-<script src="{{ asset('plugins/slick/slick.min.js') }}"></script>
-<script src="{{ asset('plugins/jquery-nice-select/js/jquery.nice-select.min.') }}"></script>
-<!-- google map -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU" defer></script>
-<script src="{{ asset('plugins/google-map/map.js') }}" defer></script>
 
 
 </body>

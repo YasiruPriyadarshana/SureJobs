@@ -12,6 +12,8 @@ use App\Models\Jobs;
 class HomeController extends Controller
 {
     public function detailjob(Jobs $job){
+        $employer = $job->employer;
+        $job['location'] = $employer->location;
         //route model binding
         return view('detail', ['job'=>$job]);
     }
@@ -51,7 +53,7 @@ class HomeController extends Controller
 
     function applyForJob(Request $request){
         $jobId = $request['job'];	
-        $employee = Employee::find($request['id']);	
+        $employee = Employee::find($request['userid']);	
        
 
         $employee->jobs()->attach($jobId);

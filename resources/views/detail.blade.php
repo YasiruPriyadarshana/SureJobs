@@ -8,11 +8,11 @@
       <article class="single-post">
         <h2>{{$job->title}}</h2>
         <ul class="list-inline">
-          <li class="list-inline-item">today</li>
+          <li class="list-inline-item">{{substr($job->updated_at, 0, -3)}}</li>
         </ul>
         <img src="../storage/company1.jpg" alt="">
         <p>{{$job->position}}</p>
-
+        <p>{{$job->location}}</p>
         <p>{{$job->salary_range}}</p>
         <p>{{$job->type}}</p>
         <p>{{$job->description}}</p>

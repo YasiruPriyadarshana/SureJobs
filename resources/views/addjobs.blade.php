@@ -6,12 +6,25 @@
     <div class="container">
 
       @if(session()->has('message'))
-        <div class="alert alert-success alert-dismissible" style="width: 40%" role="alert">
-          <button type="button" class="close" data-dismiss="alert">
-              <i class="fa fa-times"></i>
-          </button>
-          <strong> {{ session()->get('message') }}</strong>
+      <script type="text/javascript">
+        $(document).ready(function() {
+            $('#popupmodal').modal();
+        });
+    </script>
+    <div id="popupmodal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Notification: Please read</h3>
         </div>
+        <div class="modal-body">
+            <p>
+              {{ session()->get('message') }}
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+    </div>
       @endif
 
       <form action="{{ route('company.create_job', ['userid'=>$userid]) }}" method="post" >

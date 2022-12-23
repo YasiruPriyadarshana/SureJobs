@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Collection;
 
 use App\Models\User;
 use App\Models\Jobs;
 use App\Models\Employee;
+use App\Models\Employer;
 
 class EmployerController extends Controller
 {
@@ -36,25 +38,44 @@ class EmployerController extends Controller
     }
 
     function applied_jobs($id){
-        $job = Jobs::find($id);
+        // $job = Jobs::find($id);
 
-        $company = $job->employer;
+        // $company = $job->employer;
+        $company = Employer::find($id);
+
+        $jobs = $company->jobs;
+        
+        //to get company name
         $user = $company->user;
         $company['name'] = $user->name;
  
-        $employees = $job->employees;
-
-        // add attribute from parent class/user;
-        for ($i = 0; $i < count($employees); $i++) {
-            $parentclass = $employees[$i]->user;
-            $employees[$i]['name'] = $parentclass['name'] ;
+        $allemployees = new Collection();
+        foreach ($jobs as $job) {
+            $employees = $job->employees;
+            // add attribute from parent class/user;
+            for ($i = 0; $i < count($employees); $i++) {
+                $parentclass = $employees[$i]->user;
+                $employees[$i]['name'] = $parentclass['name'] ;
+                $employees[$i]['job'] = $job;
+            }
+            $allemployees = $allemployees->merge($employees);
         }
-        return view('appliedjobs', ['employees'=>$employees,'job'=>$job,'company'=>$company]);
+        
+        
+        
+        return view('appliedjobs', ['employees'=>$allemployees,'company'=>$company]);
     }
 
-    //logged company Offered Jobs
-    function allJobs(){
-        return view('mangejobs', ['jobs'=>$jobs]);
+    //authenticated company offered Jobs
+    function mangeJobs($id){
+        $company = Employer::find($id);
+        $jobs = $company->jobs;
+        
+        //to get company name
+        $user = $company->user;
+        $company['name'] = $user->name;
+         
+        return view('mangejobs', ['jobs'=>$jobs,'company'=>$company]);
     }
 
 
