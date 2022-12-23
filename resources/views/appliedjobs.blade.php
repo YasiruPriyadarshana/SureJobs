@@ -30,10 +30,10 @@
               </td>
               <td>
                 <div class="d-flex flex-column">
-                    <div class="p-2"><span ><strong>Job Position:</strong> SE</span></div>
-                    <div class="p-2"><span><strong>Type: </strong><time>Full time</time> </span></div>
-                    <div class="p-2"><span class="status active"><strong>Salary</strong>$100000</span></div>
-                    <div class="p-2"><span><strong>Description</strong>desc</span></div>
+                    <div class="p-2"><span ><strong>Job Position:</strong> {{$job->position}}</span></div>
+                    <div class="p-2"><span><strong>Type: </strong>{{$job->type}}</span></div>
+                    <div class="p-2"><span class="status active"><strong>Salary:</strong>{{$job->salary_range}}</span></div>
+                    <div class="p-2"><span><strong>Description:</strong>{{substr(strip_tags($job->description), 0, 60)}} ...</span></div>
                 </div>      
               </td>
             

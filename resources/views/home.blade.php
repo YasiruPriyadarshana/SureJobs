@@ -91,9 +91,13 @@
 									</div>
 								</div>
 								<div class="col-sm-3 align-self-center">
-									<a href="{{ route('user.applyForJob') }}" class="font-weight-bold">
-										<button type="submit" class="btn btn-primary active w-100 mb-4">Apply</button>
-									</a>
+									@isset($auth)
+                						@if ($auth == "employee")
+											<a href="{{ route('user.applyForJob',['userid' =>$userid,'auth' =>$auth,'job' =>$job->id]) }}" class="font-weight-bold">
+												<button type="submit" class="btn btn-primary active w-100 mb-4">Apply</button>
+											</a>
+										@endif
+									@endisset
 									<a class="p-4 mt-4 ml-2" href="/detail/{{$job->id}}">
 										Read More 
 									</a>

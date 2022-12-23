@@ -2,14 +2,25 @@
 @section("content")
 
 <section class="advt-post bg-gray py-5">
+
     <div class="container">
-      <form action="{{ route('company.create_job') }}" method="post" >
+
+      @if(session()->has('message'))
+        <div class="alert alert-success alert-dismissible" style="width: 40%" role="alert">
+          <button type="button" class="close" data-dismiss="alert">
+              <i class="fa fa-times"></i>
+          </button>
+          <strong> {{ session()->get('message') }}</strong>
+        </div>
+      @endif
+
+      <form action="{{ route('company.create_job', ['userid'=>$userid]) }}" method="post" >
         @csrf
         <!-- form -->
         <fieldset>
           <div class="row">
             <div class="col-lg-8">
-              <h3>Add New Job Title</h3>
+              <h3>Add New Job Post</h3>
             </div>
             <div class="col-lg-8">
               <h6 class="font-weight-bold pt-4 pb-1">Job Title:</h6>
@@ -48,6 +59,9 @@
   
       </form>
     </div>
+
+
+
   </section>
 
 @endsection

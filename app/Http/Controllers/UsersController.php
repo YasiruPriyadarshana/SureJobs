@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\View;
 use DB;
 
 use App\Models\User;
@@ -22,16 +23,19 @@ class UsersController extends Controller
         $credentials = $request->only('email', 'password');
 
         $result = DB::table('users')->select('role', 'id')->where(['email' => $credentials['email'], 'password' => $credentials['password']])->first();
-      
-        //get logged users type
+        
+        //get logged users type - employees or employer
         if($result)
         {
             if($result->role == "company"){
                 $userid = DB::table('employers')->select('id')->where('user_id', '=', $result->id)->first();
-                return view('home', ['auth' => 'company']);
+              
+                return redirect()->route('home', ['auth' => 'company','userid' => $userid->id]);
             }else{
+                
                 $userid = DB::table('employees')->select('id')->where('user_id', '=', $result->id)->first();
-                return view('home', ['auth' => 'employee']);
+              
+                return redirect()->route('home', ['auth' => 'employee','userid' => $userid->id]);
             }
             
         }

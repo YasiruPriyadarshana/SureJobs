@@ -26,17 +26,17 @@ Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/addjobs', function () {
-    return view('addjobs');
-});
+// Route::get('/addjobs', function () {
+//     return view('addjobs');
+// });
 
 Route::get('/mangejobs', function () {
     return view('mangejobs');
 });
 
-
-Route::get('/appliedjobs',[EmployerController::class, 'applied_jobs']);
-Route::get('/home/{auth}',[HomeController::class, 'index']);
+Route::get('/addjobs/{auth}',[EmployerController::class, 'index']);
+Route::get('/appliedjobs/{id}',[EmployerController::class, 'applied_jobs']);
+Route::get('/home',[HomeController::class, 'index'])->name('home');
 Route::get('/registration/{isEmployer}',[UsersController::class, 'index']);
 Route::get('/detail/{job}', [HomeController::class, 'detailjob']);
 

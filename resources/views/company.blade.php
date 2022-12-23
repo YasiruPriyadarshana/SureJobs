@@ -12,11 +12,11 @@
             <div class="widget user-dashboard-profile">
               <!-- User Image -->
               <div>
-                <img src="storage/company1.jpg" alt=""  style="width: 300px; height:150px;">
+                <img src="../storage/{{$company->image}}" alt=""  style="width: 300px; height:150px;">
               </div>
               <!-- User Name -->
-              <h5 class="text-center">Company name</h5>
-              <p>location</p>
+              <h5 class="text-center">{{$company->name}}</h5>
+              <p>{{$company->location}}</p>
               <a href="" class="btn btn-main-sm">Edit Profile</a>
             </div>
             <!-- Dashboard Links -->
