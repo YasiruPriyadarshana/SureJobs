@@ -17,30 +17,31 @@
 					<div class="container">
 						<div class="row justify-content-center">
 							<div class="col-lg-12 col-md-12 align-content-center">
-								<form>
+								<form action="{{ route('user.searchJobs') }}" method="post">
+									@csrf
 									<div class="form-row">
 										<div class="form-group col-xl-4 col-lg-3 col-md-6">
-											<input type="text" class="form-control my-2 my-lg-1" id="inputtext4"
+											<input type="text" name="job" class="form-control my-2 my-lg-1" id="inputtext4"
 												placeholder="What are you looking for">
 										</div>
 										<div class="form-group col-lg-3 col-md-6">
-											<select class="w-100 form-control mt-lg-1 mt-md-2">
+											<select name="category" class="w-100 form-control mt-lg-1 mt-md-2">
 												<option hidden>Category</option>
-												<option value="1">Computer & IT</option>
-												<option value="4">Management</option>
-												<option value="2">FinanceSales</option>
-												<option value="1">Marketing</option>
-												<option value="4">Business</option>
-												<option value="2">Accounting</option>
-												<option value="1">Science & Engineering</option>
-												<option value="4">Human Resources</option>
-												<option value="2">Restaurant & Hospitality</option>
-												<option value="2">Real Estate</option>
-												<option value="4">Transportation & Logistics</option>
+												<option value="Computer & IT">Computer & IT</option>
+												<option value="Management">Management</option>
+												<option value="FinanceSales">FinanceSales</option>
+												<option value="Marketing">Marketing</option>
+												<option value="Business">Business</option>
+												<option value="Accounting">Accounting</option>
+												<option value="Science & Engineering">Science & Engineering</option>
+												<option value="Human Resources">Human Resources</option>
+												<option value="Restaurant & Hospitality">Restaurant & Hospitality</option>
+												<option value="Real Estate">Real Estate</option>
+												<option value="Transportation & Logistics">Transportation & Logistics</option>
 											</select>
 										</div>
 										<div class="form-group col-lg-3 col-md-6">
-											<input type="text" class="form-control my-2 my-lg-1" id="inputLocation4" placeholder="Location">
+											<input type="text" name="location" class="form-control my-2 my-lg-1" id="inputLocation4" placeholder="Location">
 										</div>
 										<div class="form-group col-xl-2 col-lg-3 col-md-6 align-self-center">
 											<button type="submit" class="btn btn-primary active w-100">Search Now</button>

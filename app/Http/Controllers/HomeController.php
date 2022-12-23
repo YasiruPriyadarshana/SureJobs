@@ -34,12 +34,13 @@ class HomeController extends Controller
         $employers = Employer::all();
 
         foreach ($employers as $employer) {
-            $parentclass = $employer->only('image');
+            $parentclass = $employer->only('image','location');
             
             $jobs = $employer->jobs;
             // add attribute from parent class/employee;
             for ($i = 0; $i < count($jobs); $i++) {
                 $jobs[$i]['image'] = 'storage/'.$parentclass['image'] ;
+                $jobs[$i]['location'] = $parentclass['location'] ;
             }
 
             $alljobs = $alljobs->merge($jobs);
@@ -58,12 +59,24 @@ class HomeController extends Controller
     }
 
 
-    function searchJobs(){
-        $alljobs = new Collection();
-        $employers = Employer::all();
+    function searchJobs(Request $request){
+        $alljobs = $this->getAllJobs();
 
-        $filteredCollection = $alljobs->where('location', '=', 'Colombo');
+        $job = $request->job;
+        $category = $request->category;
+        $location = $request->location;
 
-        return view('home', ['auth'=>$auth,'alljobs'=>$filteredCollection]);
+        
+        // $filteredCollection = $alljobs->where('position', 'LIKE', "%$job%");  // this not work with collection
+
+        $alljobs = $alljobs->filter(function ($item) use ($job) {
+            return false !== stristr($item->position, $job);
+        });
+
+        $filteredCollection = $alljobs->filter(function ($item) use ($location) {
+            return false !== stristr($item->location, $location);
+        });
+
+        return view('home', ['auth'=>1,'alljobs'=>$filteredCollection]);
     }
 }

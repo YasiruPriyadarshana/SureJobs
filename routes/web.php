@@ -41,6 +41,7 @@ Route::get('/registration/{isEmployer}',[UsersController::class, 'index']);
 Route::get('/detail/{job}', [HomeController::class, 'detailjob']);
 
 Route::controller(HomeController::class)->group(function(){
+    Route::post('search', 'searchJobs')->name('user.searchJobs');
     Route::get('apply', 'applyForJob')->name('user.applyForJob');
 });
 
@@ -53,7 +54,7 @@ Route::controller(UsersController::class)->group(function(){
 });
 
 Route::controller(EmployerController::class)->group(function(){
-    Route::post('', 'create_job')->name('company.create_job');
+    Route::post('create', 'create_job')->name('company.create_job');
     Route::get('download/{employee}', 'downloadCV')->name('company.downloadCV');
 });
 

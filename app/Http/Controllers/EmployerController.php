@@ -53,11 +53,11 @@ class EmployerController extends Controller
 
 
     function downloadCV($cv){
-  
         $file = Storage::disk('public')->get($cv);
   
         return (new Response($file, 200))
               ->header('Content-Type', ' application/pdf');
+              
     }
     
 }
