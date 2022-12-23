@@ -87,7 +87,7 @@
 											<li class="list-inline-item"><i class="pl-4 pr-2 fa fa-briefcase"></i>{{$job->type}}</li>
 										</ul>
 										<div class="row"><i class="pl-3 fa fa-money"></i><p class="pl-2">{{$job->salary_range}}</p></div>
-										<p class="pr-5">{{$job->description}}</p>
+										<p class="pr-5">{{substr(strip_tags($job->description), 0, 300)}}</p>
 									</div>
 								</div>
 								<div class="col-sm-3 align-self-center">
