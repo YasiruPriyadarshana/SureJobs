@@ -1,4 +1,5 @@
 # Sure-Jobs
+
 Online Job Board System - Laravel project
 https://pixelied.com/editor?refId=7b002d3e-900a-454e-af35-0a7dc52aef77&toolRefId=94503d07-4881-40e3-a42f-3413c0a149c1
 
@@ -31,7 +32,6 @@ $post::get()
 #use Illuminate\Support\Facades\DB;
 #$post = DB::table('post')->get();
 
-
 $post = new Post();
 
 Post::create(['title'=>'Third title', 'excerpt'=>'Third long excerpt', 'content'=>'my very third long content', 'image'=>'images/tech3.jpg']);
@@ -40,14 +40,20 @@ Post::find(5)->delete();
 
 dd($post);
 
-
-@stack('scripts')  //on layout page
+@stack('scripts') //on layout page
 @push('scripts')
+
 <!-- Scripts -->
+
 @endpush
 
+#set configuration variables
+create file_name.php file in config folder
+config(['file_name.user_id' => $userid]);
+$value = config('file_name');
+
 #set global variables
-Config::set('site_settings', $site_settings);
-Config::get('site_settings');
+config(['role' => 'company']);
+$value = config('role');
 
 #for relations between tables

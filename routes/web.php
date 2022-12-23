@@ -20,32 +20,31 @@ use App\Http\Controllers\EmployerController;
 // Route::get('/', function () {
 //     return view('home');
 // });
+
+// Route::get('/addjobs', function () {
+//     return view('addjobs');
+// });
+
 Route::get('/',[HomeController::class, 'unauth']);
 
 Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/addjobs', function () {
-    return view('addjobs');
-});
-
-Route::get('/mangejobs', function () {
-    return view('mangejobs');
-});
-
-
-Route::get('/appliedjobs',[EmployerController::class, 'applied_jobs']);
-Route::get('/home/{auth}',[HomeController::class, 'index']);
+Route::get('/addjobs/{auth}',[EmployerController::class, 'index']);
+Route::get('/appliedjobs/{id}',[EmployerController::class, 'applied_jobs']);
+Route::get('/mangejobs/{id}',[EmployerController::class, 'mangeJobs']);
+Route::get('/home',[HomeController::class, 'index'])->name('home');
 Route::get('/registration/{isEmployer}',[UsersController::class, 'index']);
 Route::get('/detail/{job}', [HomeController::class, 'detailjob']);
+
+//post
 
 Route::controller(HomeController::class)->group(function(){
     Route::post('search', 'searchJobs')->name('user.searchJobs');
     Route::get('apply', 'applyForJob')->name('user.applyForJob');
 });
 
-//post
 
 Route::post('user/{id}', [UsersController::class, 'create_user']);
 

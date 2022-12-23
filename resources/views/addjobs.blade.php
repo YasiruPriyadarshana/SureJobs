@@ -2,14 +2,38 @@
 @section("content")
 
 <section class="advt-post bg-gray py-5">
+
     <div class="container">
-      <form action="{{ route('company.create_job') }}" method="post" >
+
+      @if(session()->has('message'))
+      <script type="text/javascript">
+        $(document).ready(function() {
+            $('#popupmodal').modal();
+        });
+    </script>
+    <div id="popupmodal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Notification: Please read</h3>
+        </div>
+        <div class="modal-body">
+            <p>
+              {{ session()->get('message') }}
+            </p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+    </div>
+      @endif
+
+      <form action="{{ route('company.create_job', ['userid'=>$userid]) }}" method="post" >
         @csrf
         <!-- form -->
         <fieldset>
           <div class="row">
             <div class="col-lg-8">
-              <h3>Add New Job Title</h3>
+              <h3>Add New Job Post</h3>
             </div>
             <div class="col-lg-8">
               <h6 class="font-weight-bold pt-4 pb-1">Job Title:</h6>
@@ -48,6 +72,9 @@
   
       </form>
     </div>
+
+
+
   </section>
 
 @endsection

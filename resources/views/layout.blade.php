@@ -22,9 +22,6 @@
   <link href="{{ asset('plugins/bootstrap/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('plugins/bootstrap/bootstrap-slider.css') }}" rel="stylesheet">
   <link href="{{ asset('plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('plugins/slick/slick.css" rel="stylesheet') }}">
-  <link href="{{ asset('plugins/slick/slick-theme.css" rel="stylesheet') }}">
-  <link href="{{ asset('plugins/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
   
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
@@ -48,46 +45,47 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav main-nav ">
 							<li class="nav-item @@home">
-								<a class="nav-link" href="/">Home</a>
+								<a class="nav-link" href="">Home</a>
 							</li>
               @isset($auth)
-              @if ($auth == "employee")
-              <li class="nav-item dropdown dropdown-slide @@dashboard">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#!">Jobs
-								</a>
-							</li>
-              @endif
+                @if ($auth == "employee")
+                  <li class="nav-item dropdown dropdown-slide @@dashboard">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#!">Jobs
+                    </a>
+                  </li>
+                @endif
 
-              @if ($auth == "company")
-              <li class="nav-item dropdown dropdown-slide @@dashboard">
-								<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#!">Company<span><i class="fa fa-angle-down"></i></span>
-								</a>
-								<!-- Dropdown list -->
-								<ul class="dropdown-menu">
-									<li><a class="dropdown-item @@dashboardPage" href="">Company</a></li>
-									<li><a class="dropdown-item @@dashboardMyAds" href="/addjobs">Add Job vacancies</a></li>
-									<li><a class="dropdown-item @@dashboardFavouriteAds" href="">Company Profile</a></li>
-								</ul>
-							</li>
-              @endif
+                @if ($auth == "company")
+                  <li class="nav-item dropdown dropdown-slide @@dashboard">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#!">Company<span><i class="fa fa-angle-down"></i></span>
+                    </a>
+                    <!-- Dropdown list -->
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{{ url('addjobs',$userid) }}">Add Job vacancies</a></li>
+                      <li><a class="dropdown-item" href="{{ url('appliedjobs',$userid) }}">Applied Candidates</a></li>
+                      <li><a class="dropdown-item" href="{{ url('mangejobs',$userid) }}">Company Profile</a></li>
+                    </ul>
+                  </li>
+                @endif
               @endisset
 						</ul>
 						<ul class="navbar-nav ml-auto mt-10">
               @isset($auth)
-              @if ($auth == "employee" || $auth == "company")
-							<li class="nav-item">
-								<a class="nav-link login-button" href="/login">Logout</a>
-							</li>
-              @else
-              <li class="nav-item">
-								<a class="nav-link login-button" href="/login">Login</a>
-							</li>
-              @endif
+                @if ($auth == "employee" || $auth == "company")
+                  <li class="nav-item">
+                    <a class="nav-link login-button" href="/login">Logout</a>
+                  </li>
+                @else
+                  <li class="nav-item">
+                    <a class="nav-link login-button" href="/login">Login</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-white add-button" href="{{ url('/registration/user') }}" ><i class="fa fa-sign-in"></i> Register</a>
+                  </li>
+                @endif
               @endisset
               
-							<li class="nav-item">
-								<a class="nav-link text-white add-button" href="{{ url('/registration/user') }}" ><i class="fa fa-sign-in"></i> Register</a>
-							</li>
+							
 						</ul>
 					</div>
 				</nav>
@@ -116,29 +114,29 @@
         </div>
       </div>
       <!-- Link list -->
-      <div class="col-lg-2 offset-lg-1 col-md-3 col-6 mb-4 mb-lg-0">
+      <div class="col-lg-2 mt-5 offset-lg-1 col-md-3 col-6 mb-4 mb-lg-0">
         <div class="block">
           <h4>Employee</h4>
           <ul>
-            <li><a href="Post Your Vacancy">Post Your Vacancy</a></li>
-            <li><a href="Top Employers">Top Employers</a></li>
-            <li><a href="Top jobs">Top jobs</a></li>
-            <li><a href="New to you">New to you</a></li>
-            <li><a href="terms-condition">Terms & Conditions</a></li>
+            <li><a href="">Post Your Vacancy</a></li>
+            <li><a href="">Top Employers</a></li>
+            <li><a href="">Top jobs</a></li>
+            <li><a href="">New to you</a></li>
+            <li><a href="">Terms & Conditions</a></li>
           </ul>
         </div>
       </div>
       <!-- Link list -->
-      <div class="col-lg-2 col-md-3 offset-md-1 offset-lg-0 col-6 mb-4 mb-md-0">
+      <div class="col-lg-2 mt-5 col-md-3 offset-md-1 offset-lg-0 col-6 mb-4 mb-md-0">
         <div class="block">
           <h4>Company</h4>
           <ul>
             <li><a href="registration/company">Create company Profile</a></li>
-            <li><a href="candidates">Top candidates</a></li>
-            <li><a href="jobs">Add new jobs</a></li>
-            <li><a href="Profile">Profile</a>
+            <li><a href="">Top candidates</a></li>
+            <li><a href="">Add new jobs</a></li>
+            <li><a href="">Profile</a>
             </li>
-            <li><a href="blog">Blog</a></li>
+            <li><a href="">Blog</a></li>
 
 
 
@@ -146,7 +144,7 @@
         </div>
       </div>
       <!-- Mobile app link-->
-      <div class="col-lg-4 col-md-7">
+      <div class="col-lg-4 mt-5 col-md-7">
         <div class="block-2 app-promotion">
           <div class="mobile d-flex  align-items-center">
             <a href="index">
@@ -202,16 +200,7 @@
 Essential Scripts
 =====================================-->
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
-<script src="{{ asset('plugins/bootstrap/popper.min.js') }}"></script>
 <script src="{{ asset('plugins/bootstrap/bootstrap.min.js') }}"></script>
-<script src="{{ asset('plugins/bootstrap/bootstrap-slider.js') }}"></script>
-<script src="{{ asset('plugins/tether/js/tether.min.js') }}"></script>
-<script src="{{ asset('plugins/raty/jquery.raty-fa.js') }}"></script>
-<script src="{{ asset('plugins/slick/slick.min.js') }}"></script>
-<script src="{{ asset('plugins/jquery-nice-select/js/jquery.nice-select.min.') }}"></script>
-<!-- google map -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcABaamniA6OL5YvYSpB3pFMNrXwXnLwU" defer></script>
-<script src="{{ asset('plugins/google-map/map.js') }}" defer></script>
 
 
 </body>

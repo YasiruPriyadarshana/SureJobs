@@ -12,21 +12,23 @@ use App\Models\Jobs;
 class HomeController extends Controller
 {
     public function detailjob(Jobs $job){
+        $employer = $job->employer;
+        $job['location'] = $employer->location;
         //route model binding
         return view('detail', ['job'=>$job]);
     }
 
-    function index($auth){  
+    function index(Request $auth){
         $alljobs = $this->getAllJobs(); 
-        
-        return view('home', ['auth'=>$auth,'alljobs'=>$alljobs]);
+        return view('home', ['auth'=>$auth['auth'], 'userid' => $auth['userid'],'alljobs'=>$alljobs]);
     }
 
     //for unauthorized users
     function unauth(){ 
         $alljobs = $this->getAllJobs();
+        $auth = ["auth" => "uo", "userid" => 1];
 
-        return view('home', ['auth'=>1,'alljobs'=>$alljobs]);
+        return view('home', ['auth'=>$auth,'alljobs'=>$alljobs]);
     }
 
     function getAllJobs(){
@@ -49,13 +51,14 @@ class HomeController extends Controller
         return $alljobs;
     }
 
-    function applyForJob(){
-        $jobId = 1;	
-        $employee = Employee::find(1);	
+    function applyForJob(Request $request){
+        $jobId = $request['job'];	
+        $employee = Employee::find($request['userid']);	
        
 
         $employee->jobs()->attach($jobId);
-        return view('home');
+
+        return redirect()->route('home', ['auth' => $request['auth'],'userid' => $request['userid']]);
     }
 
 

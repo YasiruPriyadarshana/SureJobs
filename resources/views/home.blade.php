@@ -87,13 +87,17 @@
 											<li class="list-inline-item"><i class="pl-4 pr-2 fa fa-briefcase"></i>{{$job->type}}</li>
 										</ul>
 										<div class="row"><i class="pl-3 fa fa-money"></i><p class="pl-2">{{$job->salary_range}}</p></div>
-										<p class="pr-5">{{$job->description}}</p>
+										<p class="pr-5">{{substr(strip_tags($job->description), 0, 300)}}</p>
 									</div>
 								</div>
 								<div class="col-sm-3 align-self-center">
-									<a href="{{ route('user.applyForJob') }}" class="font-weight-bold">
-										<button type="submit" class="btn btn-primary active w-100 mb-4">Apply</button>
-									</a>
+									@isset($auth)
+                						@if ($auth == "employee")
+											<a href="{{ route('user.applyForJob',['userid' =>$userid,'auth' =>$auth,'job' =>$job->id]) }}" class="font-weight-bold">
+												<button type="submit" class="btn btn-primary active w-100 mb-4">Apply</button>
+											</a>
+										@endif
+									@endisset
 									<a class="p-4 mt-4 ml-2" href="/detail/{{$job->id}}">
 										Read More 
 									</a>

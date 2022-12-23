@@ -5,18 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Collection;
 
 use App\Models\User;
 use App\Models\Jobs;
 use App\Models\Employee;
+use App\Models\Employer;
 
 class EmployerController extends Controller
 {
+    function index($userid){
+        return view('addjobs', ['userid'=>$userid]);
+    }
 
     function create_job(Request $request){
         $result = Jobs::create(
             [
-                'employer_id'=>1,
+                'employer_id'=>$request['userid'],
                 'title'=>$request['title'], 
                 'type'=>$request['type'], 
                 'position'=>$request['position'],
@@ -26,29 +31,51 @@ class EmployerController extends Controller
 
         if($result)
         {
-            return view('home');
+            return redirect()->back()->with('message', 'new job added!');
         }
 
-        return view('addjobs')->with('success', 'Login details are not valid');
+        return ;
     }
 
-    function applied_jobs(){
-        $Job = Jobs::find(1);
+    function applied_jobs($id){
+        // $job = Jobs::find($id);
+
+        // $company = $job->employer;
+        $company = Employer::find($id);
+
+        $jobs = $company->jobs;
+        
+        //to get company name
+        $user = $company->user;
+        $company['name'] = $user->name;
  
-        $employees = $Job->employees;
-
-        // add attribute from parent class/user;
-        for ($i = 0; $i < count($employees); $i++) {
-            $parentclass = $employees[$i]->user;
-            $employees[$i]['name'] = $parentclass['name'] ;
+        $allemployees = new Collection();
+        foreach ($jobs as $job) {
+            $employees = $job->employees;
+            // add attribute from parent class/user;
+            for ($i = 0; $i < count($employees); $i++) {
+                $parentclass = $employees[$i]->user;
+                $employees[$i]['name'] = $parentclass['name'] ;
+                $employees[$i]['job'] = $job;
+            }
+            $allemployees = $allemployees->merge($employees);
         }
-         
-        return view('appliedjobs', ['employees'=>$employees]);
+        
+        
+        
+        return view('appliedjobs', ['employees'=>$allemployees,'company'=>$company]);
     }
 
-    //logged company Offered Jobs
-    function allJobs(){
-        return view('mangejobs', ['jobs'=>$jobs]);
+    //authenticated company offered Jobs
+    function mangeJobs($id){
+        $company = Employer::find($id);
+        $jobs = $company->jobs;
+        
+        //to get company name
+        $user = $company->user;
+        $company['name'] = $user->name;
+         
+        return view('mangejobs', ['jobs'=>$jobs,'company'=>$company]);
     }
 
 
