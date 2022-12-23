@@ -13,13 +13,13 @@
         </thead>
         <tbody>
           <tr>
-            <td class="product-details">
+            {{-- <td class="product-details">
               <h3 class="title">Title</h3>
               <span class="add-id"><strong>Job Position:</strong> SE</span>
               <span><strong>Type: </strong><time>Full time</time> </span>
               <span class="status active"><strong>Salary</strong>$100000</span>
               <span class="location"><strong>Description</strong>desc</span>
-            </td>
+            </td> --}}
             <td class="action" data-title="Action">
               <div class="">
                 <ul class="list-inline justify-content-center">

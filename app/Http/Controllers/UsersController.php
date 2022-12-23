@@ -46,7 +46,6 @@ class UsersController extends Controller
         }else{
             return $this->create_employer($request);
         }
-        dd($id);
         
     }
 
