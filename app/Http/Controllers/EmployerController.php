@@ -66,6 +66,7 @@ class EmployerController extends Controller
         return view('appliedjobs', ['employees'=>$allemployees,'company'=>$company]);
     }
 
+
     //authenticated company offered Jobs
     function mangeJobs($id){
         $company = Employer::find($id);
@@ -75,7 +76,47 @@ class EmployerController extends Controller
         $user = $company->user;
         $company['name'] = $user->name;
          
-        return view('mangejobs', ['jobs'=>$jobs,'company'=>$company]);
+        return view('mangejobs', ['jobs'=>$jobs,'company'=>$company, 'userid'=>$id]);
+    }
+
+    function editJobs($id,$userid){
+        //only for build addjobspage view with data
+        
+        $job = Jobs::find($id);
+        // dd($job);
+         
+        return view('addjobs', ['userid'=>$userid,'job'=>$job]);
+    }
+
+    function editJobSubmit(Request $request){
+        // dd($request);
+        $job = Jobs::find($request['id']);
+        // Getting values from the blade template form
+        $job->employer_id =  $request->get('userid');
+        $job->title = $request->get('title');
+        $job->type = $request->get('type');
+        $job->position =  $request->get('position');
+        $job->description = $request->get('description');
+        $job->salary_range = $request->get('salary_range');
+        
+        $job->save();
+        
+       
+            return redirect()->back()->with('message', 'new job added!');
+       
+    }
+
+    function deleteJobs($id,$userid){
+        
+        $company = Employer::find($userid);
+        $jobs = $company->jobs;
+
+        Jobs::find($id)->delete();
+        //to get company name
+        $user = $company->user;
+        $company['name'] = $user->name;
+         
+        return view('mangejobs', ['jobs'=>$jobs,'company'=>$company, 'userid'=>$userid]);
     }
 
 

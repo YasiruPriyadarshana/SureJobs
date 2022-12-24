@@ -32,6 +32,8 @@ Route::get('/login', function () {
 });
 
 Route::get('/addjobs/{auth}',[EmployerController::class, 'index']);
+Route::get('/editjobs/{id}/{userid}',[EmployerController::class, 'editJobs'])->name('editjobs');
+Route::get('/deletejobs/{id}/{userid}',[EmployerController::class, 'deleteJobs']);
 Route::get('/appliedjobs/{id}',[EmployerController::class, 'applied_jobs']);
 Route::get('/mangejobs/{id}',[EmployerController::class, 'mangeJobs']);
 Route::get('/home',[HomeController::class, 'index'])->name('home');
@@ -39,6 +41,8 @@ Route::get('/registration/{isEmployer}',[UsersController::class, 'index']);
 Route::get('/detail/{job}', [HomeController::class, 'detailjob']);
 
 //post
+
+Route::post('/editjobs/{id}/{userid}',[EmployerController::class, 'editJobs']);
 
 Route::controller(HomeController::class)->group(function(){
     Route::post('search', 'searchJobs')->name('user.searchJobs');
@@ -54,6 +58,7 @@ Route::controller(UsersController::class)->group(function(){
 
 Route::controller(EmployerController::class)->group(function(){
     Route::post('create', 'create_job')->name('company.create_job');
+    Route::post('edit', 'editJobSubmit')->name('company.editJobSubmit');
     Route::get('download/{employee}', 'downloadCV')->name('company.downloadCV');
 });
 
