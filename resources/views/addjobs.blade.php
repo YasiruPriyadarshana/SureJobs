@@ -27,7 +27,7 @@
     </div>
       @endif
 
-      <form action="{{ route('company.create_job', ['userid'=>$userid]) }}" method="post" >
+      <form action="@isset($job) {{ route('company.editJobSubmit', ['userid'=>$userid,'id'=>$job->id]) }}  @else {{ route('company.create_job', ['userid'=>$userid]) }} @endisset" method="post" >
         @csrf
         <!-- form -->
         <fieldset>
@@ -37,11 +37,11 @@
             </div>
             <div class="col-lg-8">
               <h6 class="font-weight-bold pt-4 pb-1">Job Title:</h6>
-              <input type="text" class="form-control bg-white" name="title"  required>
+              <input type="text" class="form-control bg-white" name="title" value="@isset($job){{$job->title}}@endisset" required>
               <h6 class="font-weight-bold pt-4 pb-1">Position:</h6>
-              <input type="text" class="form-control bg-white" name="position"  required>
+              <input type="text" class="form-control bg-white" name="position" value="@isset($job){{$job->position}}@endisset" required>
               <h6 class="font-weight-bold pt-4 pb-1">Salary Range:</h6>
-              <input type="text" class="form-control bg-white" name="salary_range"  required>
+              <input type="text" class="form-control bg-white" name="salary_range" value="@isset($job){{$job->salary_range}}@endisset" required>
               <h6 class="font-weight-bold pt-4 pb-1">Type:</h6>
               <div class="row mx-1 bg-white" role="group" >
                 <div class="col mr-lg-4 my-2 pt-2 pb-1 rounded">
@@ -59,7 +59,7 @@
               </div>
               <h6 class="font-weight-bold pt-4 pb-1">Description:</h6>
               <textarea name="description" id="description" class="form-control bg-white" rows="7"
-                placeholder="Write Job Description Here" required></textarea>
+                placeholder="Write Job Description Here" required>@isset($job){{$job->description}}@endisset</textarea>
 
                 <!-- submit button -->
                 <div class="d-flex justify-content-center">

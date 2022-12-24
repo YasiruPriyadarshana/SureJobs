@@ -27,12 +27,12 @@
                 <div class="">
                   <ul class="list-inline justify-content-center">
                     <li class="list-inline-item">
-                      <a class="edit" data-toggle="tooltip" data-placement="top" title="Edit" href="">
+                      <a href="{{ route('editjobs', ['userid'=>$userid,'id'=>$job->id])}}" class="edit" data-toggle="tooltip" data-placement="top" title="Edit" href="">
                         <i class="fa fa-pencil"></i>
                       </a>
                     </li>
                     <li class="list-inline-item">
-                      <a class="delete" data-toggle="tooltip" data-placement="top" title="Delete" href="">
+                      <a href="/deletejobs/{{$job->id}}/{{$userid}}" class="delete" data-toggle="tooltip" data-placement="top" title="Delete" href="">
                         <i class="fa fa-trash"></i>
                       </a>
                     </li>
