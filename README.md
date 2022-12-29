@@ -1,6 +1,15 @@
 # Sure-Jobs
 
 Online Job Board System - Laravel project
+
+<p align="center">
+  <img src="https://github.com/YasiruPriyadarshana/SureJobs/blob/main/public/images/home/homepage.png">
+</p>
+
+#links
+
+https://colorhunt.co/
+
 https://pixelied.com/editor?refId=7b002d3e-900a-454e-af35-0a7dc52aef77&toolRefId=94503d07-4881-40e3-a42f-3413c0a149c1
 
 #useful commands
