@@ -10,6 +10,8 @@ Online Job Board System - Laravel project
 
 https://colorhunt.co/
 
+https://animista.net/
+
 https://pixelied.com/editor?refId=7b002d3e-900a-454e-af35-0a7dc52aef77&toolRefId=94503d07-4881-40e3-a42f-3413c0a149c1
 
 #useful commands
